@@ -3,8 +3,6 @@ import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
 
-
-
 export default function Login({ navigation }) {
 
     const [fontsLoaded] = useFonts({
@@ -14,7 +12,13 @@ export default function Login({ navigation }) {
     function acessCadastro() {
         navigation.navigate('Cadastro');
     }
-
+    
+    function acessHome(){
+        navigation.navigate('Home',
+        { eml: email}
+        );
+    }
+   
 
     const [isEmptyEmail, setIsEmptyEmail] = useState(false);
     const [isEmptySenha, setIsEmptySenha] = useState(false);
@@ -34,8 +38,11 @@ export default function Login({ navigation }) {
         if (sSenha == '') {
             setIsEmptySenha(true);
         } else {
+            navigation.navigate('Home');
             setIsEmptySenha(false);
         }
+
+       
     }
 
 
@@ -78,7 +85,7 @@ export default function Login({ navigation }) {
 
 
             <TouchableOpacity
-                onPress={val}
+                onPress={acessHome}
                 style={estilos.button}>
                 <Text>
                     Entrar

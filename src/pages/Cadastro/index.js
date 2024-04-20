@@ -3,8 +3,6 @@ import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
 
-
-
 export default function Cadastro({ navigation }) {
 
     const [fontsLoaded] = useFonts({
@@ -112,7 +110,7 @@ export default function Cadastro({ navigation }) {
                 onPress={acessLogin}
                 style={estilos.button}>
                 <Text>
-                    criar conta
+                    Criar Conta
                 </Text>
             </TouchableOpacity>
 
