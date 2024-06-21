@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, Image } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
-
+import style from '../Login/style';
 
 export default function Login({ navigation }) {
 
@@ -36,11 +36,13 @@ export default function Login({ navigation }) {
         }
 
         if (sSenha == '') {
-            setIsEmptySenha(true);
+            setIsEmptySenha(true); 
         } else {
             navigation.navigate('Home');
-            setIsEmptySenha(false);
+            setIsEmptySenha(false); 
+            acessHome();
         }
+
 
        
     }
@@ -49,17 +51,16 @@ export default function Login({ navigation }) {
     return (
 
 
-
-        <View style={estilos.container}>
-            <Image source={"./assets/logo.png"} style={estilos.logo} />
-            <View style={estilos.alinhar}>
-                <Text style={estilos.titulo}>
+        <View style={style.container}>
+            <Image source={"./assets/logo.png"} style={style.logo} />
+            <View style={style.alinhar}>
+                <Text style={style.titulo}>
                     LOGIN
                 </Text>
             </View>
 
             <TextInput
-                style={estilos.input}
+                style={style.input}
                 value={email}
                 onChangeText={(text) => setEml(text)}
                 keyboardType="email-address"
@@ -67,12 +68,12 @@ export default function Login({ navigation }) {
                 placeholderTextColor="#2E7A76" />
 
             <Text
-                style={estilos.valid}
+                style={style.valid}
             >{isEmptyEmail == true ? "CAMPO VAZIO" : ""}</Text>
 
 
             <TextInput
-                style={estilos.input}
+                style={style.input}
                 value={senha}
                 onChangeText={(text) => setSnh(text)}
                 placeholder="Digite sua Senha"
@@ -80,23 +81,23 @@ export default function Login({ navigation }) {
                 secureTextEntry={true} />
 
             <Text
-                style={estilos.valid}
+                style={style.valid}
             >{isEmptySenha == true ? "CAMPO VAZIO" : ""}</Text>
 
 
             <TouchableOpacity
-                onPress={acessHome}
-                style={estilos.button}>
-                <Text>
-                    Entrar
+                onPress={val}
+                style={style.button}>
+               <Text style={style.btntext}>
+                    ENTRAR
                 </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 onPress={acessCadastro}
-                style={estilos.button}>
-                <Text>
-                    criar conta
+                style={style.button}>
+                <Text style={style.btntext}>
+                    CRIAR CONTA
                 </Text>
             </TouchableOpacity>
 
@@ -105,53 +106,5 @@ export default function Login({ navigation }) {
     );
 }
 
-const estilos = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#DDEAED',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 24
-    },
-    texto: {
-        color: "#000",
-        fontSize: 12
-
-    },
-    input: {
-        borderWidth: 1,
-        paddingHorizontal: 8,
-        paddingVertical: 8,
-        borderRadius: 8,
-        width: "80%"
-
-
-    },
-    button: {
-        backgroundColor: "#48B7B0",
-        paddingHorizontal: 24,
-        paddingVertical: 8,
-        borderRadius: 8
-    },
-
-    titulo: {
-        alignContent: 'flex-start',
-        fontFamily: 'Lato-Black',
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: "#2E7A76",
-    },
-
-    valid: {
-        fontFamily: 'Lato-Black',
-        fontSize: 10,
-        fontWeight: 'bold',
-        color: "#DA6767",
-    },
-    logo: {
-        width: 200,
-        height: 200,
-    }
-});
 
 

@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Keyboard, Image } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
+import style from '../Cadastro/style';
+
 
 
 export default function Cadastro({ navigation }) {
@@ -9,30 +11,40 @@ export default function Cadastro({ navigation }) {
         'Lato-Black': require('./../../../src/fonts/Lato/Lato-Black.ttf')
     });
 
+   
     function acessLogin(){
         navigation.navigate('Login');
     }
 
   const [isEmptyEmail, setIsEmptyEmail] = useState(false);
   const [isEmptySenha, setIsEmptySenha] = useState(false);
+  const [isEmptySenhaConf, setIsEmptySenhaConf] = useState(false);
+  const [isEmptyNome, setIsEmptyNome] = useState(false);
   const [email, setEml] = useState('');
   const [senha, setSnh] = useState('');
-
+  const [nome, setNome] = useState('');
+  const [senhaC, setSnhC] = useState('');
+  
   function val() {
     let sEmail = email;
     let sSenha = senha; 
+    let sNome = nome;
+    let sSenhac = senhaC;
 
-    if (sEmail == '') {
+    if (sNome == '') {
+      setIsEmptyNome(true);
+    } else if (sEmail == ''){
       setIsEmptyEmail(true);
-    } else {
-      setIsEmptyEmail(false);
-    }
-
-    if (sSenha == '') {
+        
+    } else if (sSenha == '') {
      setIsEmptySenha(true);
-    } else {
-      setIsEmptySenha(false);
-    }
+    }  else if ( sSenhac == '') {
+      setIsEmptySenhaConf(true);
+     } else {
+      acessLogin();
+     }
+
+    
   }
 
 
@@ -40,28 +52,28 @@ export default function Cadastro({ navigation }) {
 
   
 
-    <View style={estilos.container}>
-      <Image source={"./assets/logo.png"} style={estilos.logo} />
-      <View style={estilos.alinhar}>
-        <Text style={estilos.titulo}>
+    <View style={style.container}>
+      <Image source={"./assets/logo.png"} style={style.logo} />
+      <View style={style.alinhar}>
+        <Text style={style.titulo}>
           CADASTRO
         </Text>
       </View>
 
       <TextInput
-        style={estilos.input}
-        value={email}
-        onChangeText={(text) => setEml(text)}
+        style={style.input}
+        value={nome}
+        onChangeText={(text) => setNome(text)}
         keyboardType="text"
         placeholder="Digite seu Nome"
         placeholderTextColor="#2E7A76" />
 
     <Text
-        style={estilos.valid}
+        style={style.valid}
       >{isEmptyEmail == true ? "CAMPO VAZIO" : ""}</Text>
 
       <TextInput
-        style={estilos.input}
+        style={style.input}
         value={email}
         onChangeText={(text) => setEml(text)}
         keyboardType="email-address"
@@ -69,12 +81,12 @@ export default function Cadastro({ navigation }) {
         placeholderTextColor="#2E7A76" />
 
       <Text
-        style={estilos.valid}
+        style={style.valid}
       >{isEmptyEmail == true ? "CAMPO VAZIO" : ""}</Text>
 
 
       <TextInput
-        style={estilos.input}
+        style={style.input}
         value={senha}
         onChangeText={(text) => setSnh(text)}
         placeholder="Digite sua Senha"
@@ -82,34 +94,34 @@ export default function Cadastro({ navigation }) {
         secureTextEntry={true} />
 
       <Text
-        style={estilos.valid}
+        style={style.valid}
       >{isEmptySenha == true ? "CAMPO VAZIO" : ""}</Text>
 
 <TextInput
-        style={estilos.input}
-        value={senha}
-        onChangeText={(text) => setSnh(text)}
+        style={style.input}
+        value={senhaC}
+        onChangeText={(text) => setSnhC(text)}
         placeholder="Confirme sua Senha"
         placeholderTextColor="#2E7A76"
         secureTextEntry={true} />
 
       <Text
-        style={estilos.valid}
+        style={style.valid}
       >{isEmptySenha == true ? "CAMPO VAZIO" : ""}</Text>
 
 
       <TouchableOpacity
         onPress={val}
-        style={estilos.button}>
-        <Text>
+        style={style.button}>
+        <Text style={style.btntext}>
           Entrar
         </Text>
       </TouchableOpacity>
       
       <TouchableOpacity
                 onPress={acessLogin}
-                style={estilos.button}>
-                <Text>
+                style={style.button}>
+                <Text style={style.btntext}>
                     Criar Conta
                 </Text>
             </TouchableOpacity>
@@ -119,52 +131,4 @@ export default function Cadastro({ navigation }) {
   );
 }
 
-const estilos = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#DDEAED',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 24
-  },
-  texto: {
-    color: "#000",
-    fontSize: 12
-
-  },
-  input: {
-    borderWidth: 1,
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-    borderRadius: 8,
-    width: "80%"
-
-
-  },
-  button: {
-    backgroundColor: "#48B7B0",
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    borderRadius: 8
-  },
-
-  titulo: {
-    alignContent: 'flex-start',
-    fontFamily: 'Lato-Black',
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: "#2E7A76",
-  },
-
-  valid: {
-    fontFamily: 'Lato-Black',
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: "#DA6767",
-  },
-  logo: {
-    width: 200,
-    height: 200,
-  }
-});
 

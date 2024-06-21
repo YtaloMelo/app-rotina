@@ -15,6 +15,7 @@ export default StyleSheet.create({
     
       },
       input: {
+
         borderWidth: 1,
         paddingHorizontal: 8,
         paddingVertical: 8,
@@ -24,12 +25,26 @@ export default StyleSheet.create({
     
       },
       button: {
+        alignItems: "center",
         backgroundColor: "#48B7B0",
-        paddingHorizontal: 24,
+        paddingHorizontal: 8,
         paddingVertical: 8,
-        borderRadius: 8
+        borderRadius: 8,
+        width: 300, // Set width to match the image width    
+        height: 40, // Set height to match the image height
       },
     
+
+      btntext: {
+        alignItems: 'center',
+        alignContent: 'center',
+        fontFamily: 'Lato-Black',
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: "#ffffff",
+        
+      },
+
       titulo: {
         alignContent: 'flex-start',
         fontFamily: 'Lato-Black',
@@ -45,10 +60,10 @@ export default StyleSheet.create({
         color: "#DA6767",
       },
       logo: {
-        width: 200,
+        width: 250,
         height: 200,
       }
     
-
+      
 
 })
